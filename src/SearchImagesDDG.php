@@ -18,15 +18,17 @@ function SearchImagesDDG($term, $maxImages = 200)
     }
 
 
-    $CurlWarapper = new \CurlWrapper();
-    $url          = 'https://duckduckgo.com/';
-    $res          = $CurlWarapper->get($url . http_build_query(['q' => $term]));
-    $searchObj    = [];
+    $CurlWarapper = new CurlWrapper();
+    $CurlWarapper->setUserAgent('firefox');
+
+    $url       = 'https://duckduckgo.com/';
+    $res       = $CurlWarapper->get($url . '?' . http_build_query(['q' => $term], '', null, PHP_QUERY_RFC3986));
+    $searchObj = [];
     preg_match('/vqd=([\d-]+)&/', $res, $searchObj);
 
     // Check if the vqd parameter was found
     if (empty($searchObj)) {
-        throw new Exception('Could not determine DuckDuckGo state parameter value.');
+        throw new \Exception('Could not determine DuckDuckGo state parameter value.');
     }
 
     $requestUrl = $url . 'i.js';
@@ -34,15 +36,15 @@ function SearchImagesDDG($term, $maxImages = 200)
     $urls       = [];
     $data       = ['next' => 1];
     $CurlWarapper->addHeader('referer', 'https://duckduckgo.com/');
-    
+
     // Iterate trough DDG's "pagination"
     while (count($urls) < $maxImages && isset($data['next'])) {
-        $res = $CurlWarapper->get($requestUrl, $params);
-        $data = $res ? json_decode($res) : [];
-        $urls = isset($data['results']) ? array_merge($urls, $data['results']) : $urls;
+        $res        = $CurlWarapper->get($requestUrl, $params);
+        $data       = $res ? json_decode($res, JSON_OBJECT_AS_ARRAY) : [];
+        $urls       = isset($data['results']) ? array_merge($urls, $data['results']) : $urls;
         $requestUrl = isset($data['next']) ? $url . $data['next'] : null;
         sleep(1);
     }
-    
+
     return array_slice($urls, 0, $maxImages);
 }
