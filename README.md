@@ -5,7 +5,7 @@ This is a PHP version of [fastai](https://www.fast.ai/)'s Python
 
 It is part of the code that accompanies their [Deep Learning for Coders](https://github.com/fastai/fastbook/)
 book (also available on [Amazon](https://www.amazon.com/Deep-Learning-Coders-fastai-PyTorch/dp/1492045527)),
-has a function called `search_images_ddg()`.
+which has a function called `search_images_ddg()`.
 
 ## How to
 
