@@ -1,0 +1,21 @@
+{
+    "name": "yanosh-k/duckduckgo",
+    "description": "Provides functions for making DuckDuckGo searches using PHP",
+    "type": "library",
+    "require": {
+        "svyatov/curlwrapper": "~1.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "YanoshK\\DuckDuckGo\\": "src/"
+        },
+        "files": ["src/SearchImagesDDG.php"]
+    },
+    "authors": [
+        {
+            "name": "Yanosh Kunsh",
+            "email": "me@yanosh.net"
+        }
+    ]
+}
