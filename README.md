@@ -7,6 +7,8 @@ It is part of the code that accompanies their [Deep Learning for Coders](https:/
 book (also available on [Amazon](https://www.amazon.com/Deep-Learning-Coders-fastai-PyTorch/dp/1492045527)),
 which has a function called `search_images_ddg()`.
 
+You can read more more about why this library exists [here](https://yanosh.net/2024/03/01/how-to-download-images-form-ddg.html).
+
 ## How to
 
 ### Installation
