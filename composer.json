@@ -1,6 +1,6 @@
 {
     "name": "yanosh-k/duckduckgo",
-    "description": "Provides functions for making DuckDuckGo searches using PHP",
+    "description": "Provides functions for making DuckDuckGo searches using PHP (currently only images)",
     "type": "library",
     "require": {
     },
